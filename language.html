@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON L10n</title>
+
+</head>
+<body>
+
+<button id="fr" class="lang-choice" onclick="changeLanguage(this.id)">French</button>  <!-- 1 -->
+<button id="it" class="lang-choice" onclick="changeLanguage(this.id)">Italian</button>  <!-- 2 -->
+    
+<ul id="greetings-list1">  <!-- 3 -->
+
+</ul>
+<div id="greetings-list">
+    <p class="greet" key="hello">Hello!</p>
+    <p class="greet" key="welcome">Welcome to my app!</p>
+<button class="greet" key="submit">Submit</button>
+</div>
+
+</body>
+	<script src="jquery-3.6.1.js"></script>
+	
+<script>
+    let langResourcesArr = {
+        "en": {
+            "hello" : "Hello!",
+            "welcome": "Welcome to my app!",
+			"submit" : "Submit"
+        },
+        "fr": {
+            "hello": "Bonjour!",
+            "welcome": "Bienvenue sur mon appli!",
+			"submit" : "Soumettre"
+        },
+        "it": {
+            "hello": "Ciao!",
+            "welcome": "Benvenuto nella mia app!",
+			"submit" : "Sottoscrivi"
+        }
+    };
+</script>
+
+<script>
+      
+    function changeLanguage(clickedLangChoiceId) {  // 1
+            $(function() {  // 2
+                $("#greetings-list").children(".greet").each(function() {  // 3
+                    let currentlyIteratedGreetKey = $(this).attr("key");  // 4
+                    let localizedValForGreetKey = langResourcesArr[clickedLangChoiceId][currentlyIteratedGreetKey];  // 5
+                    $(this).text(localizedValForGreetKey);  // 6
+                });
+            });
+    }
+</script>
+</html>
